@@ -5,8 +5,27 @@
   align-items: center;
 }
 
-.dd-hero--content-first .dd-hero__content {
+/* Image second: move content before image in the grid */
+.dd-hero--image-second .dd-hero__content {
   order: -1;
+}
+
+/* Background: stack image behind content using grid overlap */
+.dd-hero--image-background {
+  grid-template-columns: 1fr;
+}
+
+.dd-hero--image-background .dd-hero__image,
+.dd-hero--image-background .dd-hero__content {
+  grid-area: 1 / 1;
+}
+
+.dd-hero--image-background .dd-hero__image {
+  z-index: 0;
+}
+
+.dd-hero--image-background .dd-hero__content {
+  z-index: 1;
 }
 
 .dd-hero__image {
@@ -41,7 +60,7 @@
     grid-template-columns: 1fr;
   }
 
-  .dd-hero--content-first .dd-hero__content {
+  .dd-hero--image-second .dd-hero__content {
     order: 0;
   }
 }

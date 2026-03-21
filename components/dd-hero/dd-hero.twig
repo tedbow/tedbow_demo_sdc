@@ -1,4 +1,4 @@
-{% set image_first = image_first is defined ? image_first : true %}
+{% set image_position = image_position|default('first') %}
 {% set ratio = ratio|default('auto') %}
 {% set loading = loading|default('lazy') %}
 {% set aspectRatio = null %}
@@ -23,12 +23,14 @@
   </div>
 {% endset %}
 
-<div class="dd-hero dd-hero--{{ image_first ? 'image-first' : 'content-first' }}">
-  {% if image_first %}{{ imageMarkup }}{% endif %}
+<div class="dd-hero dd-hero--image-{{ image_position }}">
+  {% if image_position == 'first' %}{{ imageMarkup }}{% endif %}
 
   <div class="dd-hero__content">
     {% block body %}{% endblock %}
   </div>
 
-  {% if not image_first %}{{ imageMarkup }}{% endif %}
+  {% if image_position == 'second' %}{{ imageMarkup }}{% endif %}
+
+  {% if image_position == 'background' %}{{ imageMarkup }}{% endif %}
 </div>

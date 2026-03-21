@@ -5,6 +5,7 @@ props:
   type: object
   required:
     - image
+    - image_position
   properties:
     image:
       title: 'Image'
@@ -16,13 +17,17 @@ props:
           alt: 'Boring placeholder'
           width: 600
           height: 400
-    image_first:
-      title: Image First
-      description: When true, the image appears before the content slot; when false, content appears first
-      type: boolean
-      default: true
+    image_position:
+      title: Image Position
+      description: Controls where the image is placed relative to the content
+      type: string
+      enum:
+        - first
+        - second
+        - background
+      default: first
       examples:
-        - true
+        - first
     ratio:
       title: Aspect Ratio
       description: Aspect ratio constraint for the image
