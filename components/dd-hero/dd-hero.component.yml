@@ -23,8 +23,36 @@ props:
       default: true
       examples:
         - true
+    ratio:
+      title: Aspect Ratio
+      description: Aspect ratio constraint for the image
+      type: string
+      enum:
+        - auto
+        - 16/9
+        - 4/3
+        - 3/2
+        - 1/1
+      default: auto
+      examples:
+        - 16/9
+    loading:
+      title: Loading Strategy
+      description: Image loading attribute for performance
+      type: string
+      enum:
+        - lazy
+        - eager
+      default: lazy
+    link:
+      title: Link
+      description: Optional URL to wrap the image in an anchor tag
+      type: string
+      format: uri-reference
+      examples:
+        - https://example.com
 slots:
-  content:
+  body:
     title: Content
     description: The content to display alongside the image (e.g. heading, text, CTA)
     examples:

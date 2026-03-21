@@ -1,33 +1,34 @@
 {% set image_first = image_first is defined ? image_first : true %}
+{% set ratio = ratio|default('auto') %}
+{% set loading = loading|default('lazy') %}
+{% set aspectRatio = null %}
+
+{% if ratio != 'auto' %}
+  {% set ratioParts = ratio|split('/') %}
+  {% set aspectRatio = ratioParts[0] ~ ' / ' ~ ratioParts[1] %}
+{% endif %}
+
+{% set imageMarkup %}
+  <div class="dd-hero__image"{% if aspectRatio %} style="aspect-ratio: {{ aspectRatio }};"{% endif %}>
+    {% if link %}<a href="{{ link }}" class="dd-hero__image-link">{% endif %}
+    <img
+      class="dd-hero__img"
+      src="{{ image.src }}"
+      alt="{{ image.alt }}"
+      {% if image.width %}width="{{ image.width }}"{% endif %}
+      {% if image.height %}height="{{ image.height }}"{% endif %}
+      loading="{{ loading }}"
+    />
+    {% if link %}</a>{% endif %}
+  </div>
+{% endset %}
 
 <div class="dd-hero dd-hero--{{ image_first ? 'image-first' : 'content-first' }}">
-  {% if image_first %}
-    <div class="dd-hero__image">
-      <img
-        class="dd-hero__img"
-        src="{{ image.src }}"
-        alt="{{ image.alt }}"
-        {% if image.width %}width="{{ image.width }}"{% endif %}
-        {% if image.height %}height="{{ image.height }}"{% endif %}
-        loading="lazy"
-      />
-    </div>
-  {% endif %}
+  {% if image_first %}{{ imageMarkup }}{% endif %}
 
   <div class="dd-hero__content">
-    {% block content %}{% endblock %}
+    {% block body %}{% endblock %}
   </div>
 
-  {% if not image_first %}
-    <div class="dd-hero__image">
-      <img
-        class="dd-hero__img"
-        src="{{ image.src }}"
-        alt="{{ image.alt }}"
-        {% if image.width %}width="{{ image.width }}"{% endif %}
-        {% if image.height %}height="{{ image.height }}"{% endif %}
-        loading="lazy"
-      />
-    </div>
-  {% endif %}
+  {% if not image_first %}{{ imageMarkup }}{% endif %}
 </div>
