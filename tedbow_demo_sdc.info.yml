@@ -1,0 +1,5 @@
+name: 'Tedbow Demo SDC Components'
+type: module
+description: 'Demo SDC components for Layout Builder'
+package: Custom
+core_version_requirement: ^10 || ^11

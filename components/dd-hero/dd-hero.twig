@@ -1,0 +1,33 @@
+{% set image_first = image_first is defined ? image_first : true %}
+
+<div class="dd-hero dd-hero--{{ image_first ? 'image-first' : 'content-first' }}">
+  {% if image_first %}
+    <div class="dd-hero__image">
+      <img
+        class="dd-hero__img"
+        src="{{ image.src }}"
+        alt="{{ image.alt }}"
+        {% if image.width %}width="{{ image.width }}"{% endif %}
+        {% if image.height %}height="{{ image.height }}"{% endif %}
+        loading="lazy"
+      />
+    </div>
+  {% endif %}
+
+  <div class="dd-hero__content">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% if not image_first %}
+    <div class="dd-hero__image">
+      <img
+        class="dd-hero__img"
+        src="{{ image.src }}"
+        alt="{{ image.alt }}"
+        {% if image.width %}width="{{ image.width }}"{% endif %}
+        {% if image.height %}height="{{ image.height }}"{% endif %}
+        loading="lazy"
+      />
+    </div>
+  {% endif %}
+</div>

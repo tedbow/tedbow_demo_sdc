@@ -1,0 +1,38 @@
+.dd-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.dd-hero--content-first .dd-hero__content {
+  order: -1;
+}
+
+.dd-hero__image {
+  overflow: hidden;
+}
+
+.dd-hero__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dd-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .dd-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .dd-hero--content-first .dd-hero__content {
+    order: 0;
+  }
+}
