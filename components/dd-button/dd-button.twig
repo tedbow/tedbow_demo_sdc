@@ -8,7 +8,7 @@
   'dd-button--' ~ button_variant,
   'dd-button--' ~ button_size,
   is_disabled ? 'dd-button--disabled' : ''
-]|filter(v => v is not empty) %}
+]|filter(v => v is not empty)|join(' ') %}
 
 {# If href is provided and button is not disabled, present a link; otherwise render a button #}
 {% set href = is_disabled ? null : href %}
@@ -16,14 +16,14 @@
 {% if href %}
   <a
     href="{{ href }}"
-    {{ attributes.addClass(button_classes) }}
+    class="{{ button_classes }}"
     {% if is_disabled %}aria-disabled="true"{% endif %}
   >
     {{ button_label }}
   </a>
 {% else %}
   <button
-    {{ attributes.addClass(button_classes) }}
+    class="{{ button_classes }}"
     {% if is_disabled %}disabled{% endif %}
   >
     {{ button_label }}
