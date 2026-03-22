@@ -1,6 +1,8 @@
 {% set image_position = image_position|default('first') %}
 {% set ratio = ratio|default('auto') %}
 {% set loading = loading|default('lazy') %}
+{% set content_position = content_position|default('center') %}
+{% set content_width = content_width|default('full') %}
 {% set aspectRatio = null %}
 
 {% if ratio != 'auto' %}
@@ -26,11 +28,11 @@
 <div class="dd-hero dd-hero--image-{{ image_position }}">
   {% if image_position == 'first' %}{{ imageMarkup }}{% endif %}
 
-  <div class="dd-hero__content">
+  <div class="dd-hero__content dd-hero__content--{{ content_position }} dd-hero__content--{{ content_width }}">
     {% block body %}{% endblock %}
   </div>
 
   {% if image_position == 'second' %}{{ imageMarkup }}{% endif %}
 
-  {% if image_position == 'background' %}{{ imageMarkup }}{% endif %}
+  {% if image_position == 'background' %}{{ imageMarkup }}<div class="dd-hero__overlay"></div>{% endif %}
 </div>

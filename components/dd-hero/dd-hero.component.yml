@@ -56,6 +56,33 @@ props:
       format: uri-reference
       examples:
         - https://example.com
+    content_position:
+      title: Content Position
+      description: Position of the content slot within the component (primarily affects background mode)
+      type: string
+      enum:
+        - center
+        - top-left
+        - top-center
+        - top-right
+        - bottom-left
+        - bottom-center
+        - bottom-right
+      default: center
+      examples:
+        - center
+    content_width:
+      title: Content Width
+      description: Width of the content slot
+      type: string
+      enum:
+        - full
+        - three-quarters
+        - half
+        - one-third
+      default: full
+      examples:
+        - full
 slots:
   body:
     title: Content
